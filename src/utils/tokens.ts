@@ -4,7 +4,6 @@ export interface TokenDTO {
     coingeckoId: string;
 }
 
-
 export const tokens: Array<TokenDTO> = [
     {
         title: 'BTC',
@@ -42,3 +41,14 @@ export const tokens: Array<TokenDTO> = [
         coingeckoId: 'dai'
     }
 ]
+
+export const totalPages = Math.ceil(tokens.length / 3);
+export const countOfElements = 3;
+
+const createTokenNamesMap = () => {
+    const nameMap = new Map()
+    tokens.forEach((token) => nameMap.set(token.address, token.title))
+    return nameMap
+}
+
+export const tokenNamesMap = createTokenNamesMap()

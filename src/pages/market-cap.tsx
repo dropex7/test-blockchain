@@ -1,11 +1,11 @@
-import {useEffect, useMemo, useState} from "react";
+/**
+ * Created by MIRZOEV A. on 14.04.2023
+ */
 
+import {useMemo, useState} from "react";
 import {countOfElements, tokens, totalPages} from "@/utils/tokens";
-import {useAuth} from "@/hooks/useAuth";
-import {useRouter} from "next/router";
 import {Container} from "@/pages/assets";
 import {createQueryRateInfo} from "@/utils/queryCreator";
-import {useAppSelector} from "@/store";
 import {Url} from "@/hooks/useFetchBalanceOfTokens";
 import {useFetchTokensRate} from "@/hooks/useFetchTokensRate";
 import {BaseRow, Columns} from "@/components/Table/Table";
@@ -72,17 +72,14 @@ const columns: Array<Columns<TokenDetail>> = [
         key: "status",
         render: ({status, ok}) => (
             <span>
-                {status} {ok ? "OK" : "NOTOK"}
-            </span>
+        {status} {ok ? "OK" : "NOTOK"}
+      </span>
         ),
     },
 ];
 
 export default function MarketCap() {
     const [page, setPage] = useState(1);
-    const address = useAppSelector((state) => state.account.address);
-    const router = useRouter();
-    const {auth} = useAuth();
 
     const urls = useMemo<Array<string>>(
         () =>
@@ -93,17 +90,13 @@ export default function MarketCap() {
     );
     const {data, isLoading, mutate} = useFetchTokensRate<TokenDetail>(urls);
 
-    useEffect(() => {
-        if (!auth) {
-            router.push("/");
-        }
-    }, [auth, router]);
-
     return (
         <Container>
             <TitleContainer>
                 <Title>Market Cap</Title>
-                <Button onClick={() => mutate()} isLoading={isLoading}>Check</Button>
+                <Button onClick={() => mutate()} isLoading={isLoading}>
+                    Check
+                </Button>
             </TitleContainer>
 
             {isLoading ? (

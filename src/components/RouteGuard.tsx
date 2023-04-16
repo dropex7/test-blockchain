@@ -5,23 +5,23 @@ import {useAppDispatch} from "@/store";
 
 export function RouteGuard({children}: PropsWithChildren) {
     const router = useRouter();
-    const dispatch = useAppDispatch()
+    const dispatch = useAppDispatch();
 
     const [authorized, setAuthorized] = useState(false);
 
     function authCheck(url: string) {
         // redirect to login page if accessing a private page and not logged in
-        const publicPaths = ['/'];
-        const token = localStorage.getItem('address');
-        const path = url.split('?')[0];
+        const publicPaths = ["/"];
+        const token = localStorage.getItem("address");
+        const path = url.split("?")[0];
         if (!token && !publicPaths.includes(path)) {
             setAuthorized(false);
             router.push({
-                pathname: '/',
-                query: {returnUrl: router.asPath}
+                pathname: "/",
+                query: {returnUrl: router.asPath},
             });
         } else {
-            dispatch(setAccount(token!))
+            dispatch(setAccount(token!));
             setAuthorized(true);
         }
     }
@@ -31,19 +31,19 @@ export function RouteGuard({children}: PropsWithChildren) {
         authCheck(router.asPath);
 
         const hideContent = () => setAuthorized(false);
-        router.events.on('routeChangeStart', hideContent);
+        router.events.on("routeChangeStart", hideContent);
 
         // on route change complete - run auth check
-        router.events.on('routeChangeComplete', authCheck)
+        router.events.on("routeChangeComplete", authCheck);
 
         // unsubscribe from events in useEffect return function
         return () => {
-            router.events.off('routeChangeStart', hideContent);
-            router.events.off('routeChangeComplete', authCheck);
-        }
+            router.events.off("routeChangeStart", hideContent);
+            router.events.off("routeChangeComplete", authCheck);
+        };
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    return <>{authorized && children}</>
+    return <>{authorized && children}</>;
 }

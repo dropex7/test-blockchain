@@ -23,45 +23,49 @@ interface TableProps<T> {
 const StyledTable = styled.table`
   width: 100%;
   border-spacing: 0 1px;
-  border-radius: 100px;
-`
+  border-top-right-radius: 8px;
+  border-top-left-radius: 8px;
+`;
 
 const TableHead = styled.thead`
-  background: #F2F2F2;
-`
+  background: var(--light-border);
+  border: solid 1px black;
+`;
 
 const TableHeadElement = styled.th`
   padding: 14px;
   text-align: start;
   font-weight: 400;
   color: var(--text-light);
-`
+`;
 
 const TableBody = styled.tbody`
-  background: #FFFFFF;
-`
+  background: #ffffff;
+`;
 
-const TableRow = styled.tr`
-`
+const TableRow = styled.tr``;
 
 const TableColumn = styled.td`
   text-align: start;
   padding: 14px;
-`
+`;
 
 const CheckBoxColumn = styled(TableColumn)`
   width: 30px;
-`
+`;
 
 function Table<Type>({rows, columns}: TableProps<Type>) {
     const titles = useMemo(
-        () => columns.map(({title}) => <TableHeadElement key={title}>{title}</TableHeadElement>),
+        () =>
+            columns.map(({title}) => (
+                <TableHeadElement key={title}>{title}</TableHeadElement>
+            )),
         [columns]
     );
 
     const renderedRows = useMemo(
         () =>
-            rows.map((row, index) => {
+            rows.map((row) => {
                 const cols = columns.map(({render, title}) => (
                     <TableColumn key={`${title}_${row.id}`}>{render(row)}</TableColumn>
                 ));
@@ -84,16 +88,14 @@ function Table<Type>({rows, columns}: TableProps<Type>) {
         <StyledTable>
             <TableHead>
                 <TableRow>
-                    <TableColumn style={{width: '30px'}}>
+                    <TableHeadElement style={{width: "30px"}}>
                         <input type="checkbox" name="horns"/>
-                    </TableColumn>
+                    </TableHeadElement>
                     {titles}
-                    <TableColumn/>
+                    <TableHeadElement/>
                 </TableRow>
             </TableHead>
-            <TableBody>
-                {renderedRows}
-            </TableBody>
+            <TableBody>{renderedRows}</TableBody>
         </StyledTable>
     );
 }

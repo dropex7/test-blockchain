@@ -6,8 +6,7 @@ const fetcherCoins = (urls: Array<string>) => {
         const dateStart = dayjs();
         return fetch(url).then((r) =>
             r.json().then((data) => {
-                console.log(r)
-                const dateEnd = dayjs()
+                const dateEnd = dayjs();
                 return {
                     id: data.id,
                     name: data.name,
@@ -17,7 +16,7 @@ const fetcherCoins = (urls: Array<string>) => {
                     ok: r.ok,
                     url,
                     dateStart,
-                    dateEnd
+                    dateEnd,
                 };
             })
         );

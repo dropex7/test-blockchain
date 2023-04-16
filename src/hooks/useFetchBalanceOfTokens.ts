@@ -23,7 +23,7 @@ const fetcherBalance = (urls: Array<Url>) => {
             .then((rate) => {
                 const urlParams = new URLSearchParams(balanceUrl);
                 const address = urlParams.get("contractaddress");
-                const usd = balance * rate[coingeckoUrl.coinId].usd
+                const usd = balance * rate[coingeckoUrl.coinId].usd;
                 return {
                     id: address,
                     token: tokenNamesMap.get(address),

@@ -10,6 +10,9 @@
     --gray-dark: #4A4A4A;
     --gray-low: rgba(0, 0, 0, 0.3);
     --text-light: #2E2E2E;
+    --light-primary: #F0F8FF;
+    --link-text: #0080FF;
+    --light-border: #F2F2F2;
 }
 
 * {
@@ -59,3 +62,6 @@ a {
     text-decoration-line: underline;
     text-transform: uppercase;
 }
+
+
+

@@ -1,7 +1,8 @@
-import {useEffect, useMemo, useState} from "react";
+/**
+ * Created by MIRZOEV A. on 14.04.2023
+ */
 
-import {useRouter} from "next/router";
-import {useAuth} from "@/hooks/useAuth";
+import {useMemo, useState} from "react";
 import styled from "styled-components";
 import {useAppSelector} from "@/store";
 import {Url, useFetchBalanceOfTokens} from "@/hooks/useFetchBalanceOfTokens";
@@ -50,12 +51,9 @@ const columns: Array<Columns<TokenBalance>> = [
     },
 ];
 
-
 export default function Assets() {
     const [page, setPage] = useState(1);
     const address = useAppSelector((state) => state.account.address);
-    const router = useRouter();
-    const {auth} = useAuth();
 
     const urls = useMemo<Array<Url>>(
         () =>
@@ -73,12 +71,6 @@ export default function Assets() {
     );
 
     const {data, isLoading} = useFetchBalanceOfTokens<TokenBalance>(urls);
-
-    useEffect(() => {
-        if (!auth) {
-            router.push("/");
-        }
-    }, [auth, router]);
 
     return (
         <Container>

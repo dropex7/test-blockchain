@@ -39,11 +39,118 @@ export const tokens: Array<TokenDTO> = [
         title: 'DAI',
         address: '0xEC5dCb5Dbf4B114C9d0F65BcCAb49EC54F6A0867',
         coingeckoId: 'dai'
-    }
+    },
+    {
+        title: 'USDT',
+        address: '0x337610d27c682E347C9cD60BD4b3b107C9d34dDd',
+        coingeckoId: 'tether'
+    },
+    {
+        title: 'USDC',
+        address: '0x64544969ed7EBf5f083679233325356EbE738930',
+        coingeckoId: 'usd-coin'
+    },
+    {
+        title: 'DAI',
+        address: '0xEC5dCb5Dbf4B114C9d0F65BcCAb49EC54F6A0867',
+        coingeckoId: 'dai'
+    },
+    {
+        title: 'USDT',
+        address: '0x337610d27c682E347C9cD60BD4b3b107C9d34dDd',
+        coingeckoId: 'tether'
+    },
+    {
+        title: 'USDC',
+        address: '0x64544969ed7EBf5f083679233325356EbE738930',
+        coingeckoId: 'usd-coin'
+    },
+    {
+        title: 'DAI',
+        address: '0xEC5dCb5Dbf4B114C9d0F65BcCAb49EC54F6A0867',
+        coingeckoId: 'dai'
+    },
+    {
+        title: 'USDT',
+        address: '0x337610d27c682E347C9cD60BD4b3b107C9d34dDd',
+        coingeckoId: 'tether'
+    },
+    {
+        title: 'USDC',
+        address: '0x64544969ed7EBf5f083679233325356EbE738930',
+        coingeckoId: 'usd-coin'
+    },
+    {
+        title: 'DAI',
+        address: '0xEC5dCb5Dbf4B114C9d0F65BcCAb49EC54F6A0867',
+        coingeckoId: 'dai'
+    },
+    {
+        title: 'USDT',
+        address: '0x337610d27c682E347C9cD60BD4b3b107C9d34dDd',
+        coingeckoId: 'tether'
+    },
+    {
+        title: 'USDC',
+        address: '0x64544969ed7EBf5f083679233325356EbE738930',
+        coingeckoId: 'usd-coin'
+    },
+    {
+        title: 'DAI',
+        address: '0xEC5dCb5Dbf4B114C9d0F65BcCAb49EC54F6A0867',
+        coingeckoId: 'dai'
+    },
+    {
+        title: 'USDT',
+        address: '0x337610d27c682E347C9cD60BD4b3b107C9d34dDd',
+        coingeckoId: 'tether'
+    },
+    {
+        title: 'USDC',
+        address: '0x64544969ed7EBf5f083679233325356EbE738930',
+        coingeckoId: 'usd-coin'
+    },
+    {
+        title: 'DAI',
+        address: '0xEC5dCb5Dbf4B114C9d0F65BcCAb49EC54F6A0867',
+        coingeckoId: 'dai'
+    },
+    {
+        title: 'USDT',
+        address: '0x337610d27c682E347C9cD60BD4b3b107C9d34dDd',
+        coingeckoId: 'tether'
+    },
+    {
+        title: 'USDC',
+        address: '0x64544969ed7EBf5f083679233325356EbE738930',
+        coingeckoId: 'usd-coin'
+    },
+    {
+        title: 'DAI',
+        address: '0xEC5dCb5Dbf4B114C9d0F65BcCAb49EC54F6A0867',
+        coingeckoId: 'dai'
+    }, {
+        title: 'USDT',
+        address: '0x337610d27c682E347C9cD60BD4b3b107C9d34dDd',
+        coingeckoId: 'tether'
+    },
+    {
+        title: 'USDC',
+        address: '0x64544969ed7EBf5f083679233325356EbE738930',
+        coingeckoId: 'usd-coin'
+    },
+    {
+        title: 'DAI',
+        address: '0xEC5dCb5Dbf4B114C9d0F65BcCAb49EC54F6A0867',
+        coingeckoId: 'dai'
+    },
+
+
 ]
 
-export const totalPages = Math.ceil(tokens.length / 3);
 export const countOfElements = 3;
+export const totalPages = Math.ceil(tokens.length / countOfElements);
+
 
 const createTokenNamesMap = () => {
     const nameMap = new Map()

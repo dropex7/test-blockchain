@@ -1,5 +1,6 @@
 {
   "name": "test-blockchain",
+  "author": "MIRZOEV A. <Limash76912@mail.ru>",
   "version": "0.1.0",
   "private": true,
   "scripts": {

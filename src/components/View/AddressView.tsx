@@ -2,10 +2,9 @@
  * Created by MIRZOEV A. on 14.04.2023
  */
 
-import {memo, useMemo} from 'react';
+import {memo, useMemo} from "react";
 import {AccountState} from "@/store/accountSlice";
 import styled from "styled-components";
-import {add} from "@noble/hashes/_u64";
 import {createTextAddress} from "@/utils/misc";
 
 interface AddressViewProps {
@@ -19,11 +18,13 @@ const AddressContainer = styled.span`
   font-size: 13px;
   text-transform: uppercase;
   opacity: 0.5;
-`
+`;
 
-const AddressView = memo<AddressViewProps>(({address}): JSX.Element | null => {
-    const textAddress = useMemo(() => createTextAddress(address), [address]);
-    return <AddressContainer>{textAddress}</AddressContainer>;
-});
+const AddressView = memo<AddressViewProps>(
+    ({address}): JSX.Element | null => {
+        const textAddress = useMemo(() => createTextAddress(address), [address]);
+        return <AddressContainer>{textAddress}</AddressContainer>;
+    }
+);
 
 export default AddressView;

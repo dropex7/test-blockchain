@@ -2,10 +2,9 @@
  * Created by MIRZOEV A. on 14.04.2023
  */
 
-import {memo, useMemo} from "react";
+import {memo} from "react";
 import {AccountState} from "@/store/accountSlice";
 import styled from "styled-components";
-import {createTextAddress} from "@/utils/misc";
 import AddressView from "@/components/View/AddressView";
 
 interface AccountViewProps {

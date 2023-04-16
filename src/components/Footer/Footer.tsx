@@ -27,7 +27,9 @@ const Footer = memo((): JSX.Element | null => {
 
     return (
         <FooterContainer>
-            <FooterLink auth={auth} href="#">PRIVACY POLICY</FooterLink>
+            <FooterLink auth={auth} href="#">
+                PRIVACY POLICY
+            </FooterLink>
             <FooterText auth={auth}>© 2023 All rights reserved</FooterText>
         </FooterContainer>
     );

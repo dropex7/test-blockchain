@@ -1,10 +1,10 @@
-import Head from 'next/head'
+import Head from "next/head";
 import {ethers} from "ethers";
 import styled from "styled-components";
 import {useRouter} from "next/router";
 import {useAppDispatch} from "@/store";
 import {setAccount} from "@/store/accountSlice";
-import {useCallback, useEffect} from "react";
+import {useCallback} from "react";
 import BlockWithFigures from "@/components/Figures/BlockWithFigures";
 
 const Content = styled.div`
@@ -14,13 +14,13 @@ const Content = styled.div`
   grid-template-columns: repeat(2, 1fr);
   column-gap: 2rem;
   height: 70vh;
-`
+`;
 
 const AuthContainer = styled.div`
   display: flex;
   row-gap: 125px;
   flex-direction: column;
-`
+`;
 
 const AuthButton = styled.button`
   text-transform: uppercase;
@@ -29,35 +29,29 @@ const AuthButton = styled.button`
   color: black;
   padding: 10px 0;
   border-radius: 4px;
-`
+`;
 
 const Title = styled.h1`
   color: white;
+  line-height: 120%;
 `;
-
 
 export default function Home() {
     const router = useRouter();
-    const dispatch = useAppDispatch()
+    const dispatch = useAppDispatch();
 
     const handleButton = useCallback(async () => {
-        console.log('hadleButton')
-        const provider = new ethers.BrowserProvider(window.ethereum!)
-        const accounts = await provider.send("eth_requestAccounts", []);
-        const address = accounts[0]
-        localStorage.setItem('address', address)
-        dispatch(setAccount(address))
-        router.push('/assets')
-    }, [dispatch, router])
-
-
-    useEffect(() => {
-        const localAddress = localStorage.getItem('address')
-        if (localAddress) {
-            dispatch(setAccount(localAddress))
-            router.push('/assets')
+        if (window.ethereum) {
+            const provider = new ethers.BrowserProvider(window.ethereum);
+            const accounts = await provider.send("eth_requestAccounts", []);
+            const address = accounts[0];
+            localStorage.setItem("address", address);
+            dispatch(setAccount(address));
+            router.push("/assets");
+        } else {
+            alert("INSTALL METAMASK EXTENSION")
         }
-    }, [dispatch, router])
+    }, [dispatch, router]);
 
     return (
         <>
@@ -70,14 +64,13 @@ export default function Home() {
 
             <Content>
                 <AuthContainer>
-                    <Title>Track Your Crypto Wealth with Our Wallet Balance Service</Title>
-                    <AuthButton onClick={handleButton}>
-                        Metamask
-                    </AuthButton>
+                    <Title>
+                        Track Your Crypto Wealth with Our Wallet Balance Service
+                    </Title>
+                    <AuthButton onClick={handleButton}>Metamask</AuthButton>
                 </AuthContainer>
                 <BlockWithFigures/>
             </Content>
-
         </>
-    )
+    );
 }

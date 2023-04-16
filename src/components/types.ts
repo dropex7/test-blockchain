@@ -6,8 +6,8 @@ export interface TokenResponse {
 
 export interface CurrencyResponse {
     [key: string]: {
-        usd: number
-    }
+        usd: number;
+    };
 }
 
 export interface AuthProps {

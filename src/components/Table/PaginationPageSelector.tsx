@@ -2,8 +2,9 @@
  * Created by MIRZOEV A. on 15.04.2023
  */
 
-import {Dispatch, memo, SetStateAction, useEffect, useMemo} from "react";
+import {Dispatch, memo, SetStateAction, useMemo} from "react";
 import styled from "styled-components";
+import {createPageButtons} from "@/utils/misc";
 
 interface PaginationPageSelectorProps {
     totalPages: number;
@@ -11,25 +12,70 @@ interface PaginationPageSelectorProps {
     onChangePage: Dispatch<SetStateAction<number>>;
 }
 
-const PageSelectButton = styled.button``;
+const Container = styled.div`
+  display: flex;
+  gap: 10px;
+`;
 
-const createPageButtons = (page: number, totalPages: number) => {
-    const allPages = Array.from(Array(10).keys()).slice(1)
-    const centerElements = allPages.slice(page - 2, page + 2)
-    console.log(centerElements)
+const PageSelectButton = styled.button`
+  border: none;
+  background: transparent;
+  padding: 10px 16px;
+  ${({active}: { active: boolean }) =>
+          active ? "background: var(--light-primary); border-radius: 4px;" : ""}
+`;
 
-    console.log(allPages.filter((page) => {
+const PageSelectText = styled.span`
+  ${({active}: { active: boolean }) =>
+          active ? "color: var(--link-text)" : ""};
+`;
 
-        return true
-    }))
-    return []
-}
+const EllipsisText = styled.span`
+  padding: 10px 16px;
+`;
 
 const PaginationPageSelector = memo<PaginationPageSelectorProps>(
     ({totalPages, currentPage, onChangePage}): JSX.Element | null => {
-        const kek = useMemo(() => createPageButtons(currentPage, totalPages), [currentPage, totalPages])
+        const {pages, isStart, isEnd} = useMemo(
+            () => createPageButtons(currentPage, totalPages),
+            [currentPage, totalPages]
+        );
 
-        return <span>Current page: {currentPage}</span>;
+        return (
+            <Container>
+                {!isStart ? (
+                    <>
+                        <PageSelectButton active={false} onClick={() => onChangePage(1)}>
+                            <PageSelectText active={false}>{1}</PageSelectText>
+                        </PageSelectButton>
+                        <EllipsisText>...</EllipsisText>
+                    </>
+                ) : null}
+                {pages.map((page) => {
+                    const active = page === currentPage;
+                    return (
+                        <PageSelectButton
+                            active={active}
+                            key={page}
+                            onClick={() => onChangePage(page)}
+                        >
+                            <PageSelectText active={active}>{page}</PageSelectText>
+                        </PageSelectButton>
+                    );
+                })}
+                {!isEnd ? (
+                    <>
+                        <EllipsisText>...</EllipsisText>
+                        <PageSelectButton
+                            active={false}
+                            onClick={() => onChangePage(totalPages)}
+                        >
+                            <PageSelectText active={false}>{totalPages}</PageSelectText>
+                        </PageSelectButton>
+                    </>
+                ) : null}
+            </Container>
+        );
     }
 );
 

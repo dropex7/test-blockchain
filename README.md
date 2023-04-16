@@ -1,11 +1,2 @@
-## Getting Started
-
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+## [App URL](https://test-blockchain.vercel.app/)
+### Available paths "/assets", "/market-cap"

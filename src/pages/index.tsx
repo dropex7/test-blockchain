@@ -4,8 +4,9 @@ import styled from "styled-components";
 import {useRouter} from "next/router";
 import {useAppDispatch} from "@/store";
 import {setAccount} from "@/store/accountSlice";
-import {useCallback} from "react";
+import {useCallback, useEffect} from "react";
 import BlockWithFigures from "@/components/Figures/BlockWithFigures";
+import {useAuth} from "@/hooks/useAuth";
 
 const Content = styled.div`
   display: grid;
@@ -39,6 +40,7 @@ const Title = styled.h1`
 export default function Home() {
     const router = useRouter();
     const dispatch = useAppDispatch();
+    const {auth} = useAuth()
 
     const handleButton = useCallback(async () => {
         if (window.ethereum) {
@@ -52,6 +54,12 @@ export default function Home() {
             alert("INSTALL METAMASK EXTENSION")
         }
     }, [dispatch, router]);
+
+    useEffect(() => {
+        if (auth) {
+            router.push("/assets");
+        }
+    }, [auth, router])
 
     return (
         <>

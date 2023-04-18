@@ -19,7 +19,7 @@ const Container = styled.div`
   box-shadow: 0 2px 2px rgba(0, 0, 0, 0.12);
   border-top-right-radius: 8px;
   border-top-left-radius: 8px;
-  overflow-x: scroll;
+  overflow-x: auto;
 `;
 
 function TableWithPagination<T>({
